@@ -1,6 +1,7 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs25_cs50;
 
 import com.company.IPolynomialSolver;
+import com.company.PolynomialSolver;
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 
-        IPolynomialSolver IPolynomialSolver = new IPolynomialSolver();
+        PolynomialSolver IPolynomialSolver = new PolynomialSolver();
         System.out.println("____________________");
         System.out.println("1- Set a polynomial variable\r\n" + "2- Print the value of a polynomial variable\r\n"
                 + "3- Add two polynomials\r\n" + "4- Subtract two polynomials\n" + "5- Multiply two polynomials\r\n"
@@ -85,7 +86,7 @@ public class Main {
                         }
                     }
                 }
-                IPolynomialSolver.Sort(terms);
+                PolynomialSolver.Sort(terms);
                 IPolynomialSolver.setPolynomial(n, terms);
             }
             if (a == 2) {
@@ -147,4 +148,5 @@ public class Main {
         }
         s.close();
     }
+
 }
