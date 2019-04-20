@@ -1,0 +1,133 @@
+eg.edu.alexu.csd.datastructure.linkedList.cs25_cs50
+public class LinkedList {
+    Object value ;
+    LinkedList next ;
+    public Object getValue(){
+        return value ;
+    }
+    public LinkedList getNext(){
+        return next;
+    }
+}
+public class singlylinkedlist {
+        LinkedList m = new LinkedList();
+        public void add (Object element){
+            LinkedList head = new LinkedList();
+            head=m;
+            LinkedList prev = new LinkedList();
+            LinkedList g = new LinkedList();
+            g.value = element;
+            while(head!=null){
+                prev = head ;
+                head=head.next;
+            }
+            prev.next = g ;
+            g.next = null ;
+        }
+        public void add(int index, Object element) {
+            LinkedList head = new LinkedList();
+            head=m;
+            LinkedList insert =new LinkedList();
+            insert.value=element;
+            int counter =0;
+            while(counter<index-1) {
+                head=head.next;
+                counter++;
+            }
+            LinkedList temp = new LinkedList();
+            temp=head.next;
+            head.next= insert;
+            insert.next=temp;
+        }
+        public Object get( int index ) {
+            LinkedList head = new LinkedList();
+            head=m;
+            int counter = 0;
+            while (counter < index ) {
+                head = head.next;
+                counter++;
+            }
+            return head.value;
+        }
+        public void set( int index , Object element) {
+            LinkedList head = new LinkedList();
+            head=m;
+            int counter = 0;
+            while (counter < index ) {
+                head = head.next;
+                counter++;
+            }
+            head.value=element;
+        }
+        public void clear(){
+            LinkedList head = new LinkedList();
+            head=m;
+            head.value = null;
+            head.next = null ;
+        }
+        public int size(){
+            LinkedList head = new LinkedList();
+            head=m;
+            int countr = 0 ;
+            while(head!=null){
+                head=head.next;
+                countr++;
+            }
+            return countr ;
+        }
+        public boolean isEmpty() {
+            LinkedList head = new LinkedList();
+            head=m;
+            if(head.value==null && head.next==null) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        public singlylinkedlist sublist(int fromIndex , int toIndex){
+            LinkedList head = new LinkedList();
+            head=m;
+            int counter = toIndex - fromIndex +1 ;
+            singlylinkedlist h = new singlylinkedlist() ;
+            while (fromIndex!=0){
+                fromIndex--;
+                head= head.next;
+            }
+            h.m.value=head.value;
+            head=head.next;
+            System.out.println(counter);
+            while (counter>1){
+                h.add(head.value);
+                head=head.next;
+                counter--;
+            }
+            return h ;
+        }
+        public void remove(int index){
+            LinkedList head = new LinkedList();
+            head = m ;
+            int counter = 0;
+            while (counter<index-1){
+                head = head.next;
+                counter++;
+            }
+            LinkedList temp = new LinkedList();
+            temp = head.next;
+            head.next = temp.next;
+            temp.next = null ;
+
+        }
+        public boolean contains(Object o ){
+            LinkedList head  = new LinkedList();
+            head = m ;
+            while (head!= null){
+                if (head.value==o){
+                    return true ;
+                }
+                head=head.next;
+            }
+            return false;
+        }
+
+    }
