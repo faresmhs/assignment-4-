@@ -14,7 +14,7 @@ public class doubly {
         return prev ;
     }
 }
-public class doublylinkedlist {
+public class doublylinkedlist implements ILinkedList {
     doubly m = new doubly();
     public void add(Object element) {
         doubly head = new doubly();
