@@ -1,0 +1,173 @@
+eg.edu.alexu.csd.datastructure.linkedList.cs25_cs50
+package com.company;
+public class doubly {
+    Object value ;
+    doubly next ;
+    doubly prev ;
+    public Object getValue(){
+        return value ;
+    }
+    public doubly getNext(){
+        return next;
+    }
+    public doubly getPrev(){
+        return prev ;
+    }
+}
+public class doublylinkedlist {
+    doubly m = new doubly();
+    public void add(Object element) {
+        doubly head = new doubly();
+        head = m;
+        doubly prev = new doubly();
+        doubly tail = new doubly();
+        doubly temp = new doubly();
+        temp.value = element;
+        prev = head ;
+        head = head.next.next;
+        while (head != null) {
+            prev = prev.next;
+            head = head.next;
+        }
+        tail = prev.next;
+        prev.next = temp;
+        temp.next = tail ;
+        temp.prev = prev;
+        tail.next = null ;
+
+    }
+
+    public void add(int index, Object element) {
+        doubly head = new doubly();
+        head = m;
+        doubly insert = new doubly();
+        insert.value = element;
+        int counter = 0;
+        while (counter < index - 1) {
+            head = head.next;
+            counter++;
+        }
+        doubly temp = new doubly();
+        temp = head.next;
+        head.next = insert;
+        insert.next = temp;
+        insert.prev = head;
+        if (temp != null) {
+            temp.prev = insert;
+        }
+    }
+    public void clear(){
+        doubly head = new doubly();
+        head = m ;
+            head.prev = head.next = null ;
+            head.value = null;
+    }
+    public boolean isEmpty(){
+        doubly head = new doubly();
+        head = m ;
+        if (head.prev == null && head.next == null && head.value == null){
+            return true ;
+        }
+        else {
+            return false ;
+        }
+    }
+    public int size() {
+        doubly head = new doubly();
+        head=m;
+        int countr = 0 ;
+        while(head!=null){
+            head=head.next;
+            countr++;
+        }
+        return countr ;
+    }
+    public void remove(int index){
+        doubly head = new doubly();
+        head = m ;
+        doublylinkedlist r =new doublylinkedlist();
+        r.m=head;
+
+        doubly temp1 = new doubly();
+        doubly temp2 = new doubly();
+        int counter =0 ;
+        if (index == 0 ){
+            m = head.next ;
+            m.prev=null;
+        }
+        else if (index == r.size()-1){
+            while (counter<index){
+                head = head.next;
+                counter++;
+            }
+            temp2 = head.prev ;
+            temp2.next = null ;
+        }
+        else {
+            while (counter<index){
+                head = head.next;
+                counter++;
+            }
+            temp1 = head.next ;
+            temp2 = head.prev ;
+            temp1.prev = temp2 ;
+            temp2.next = temp1 ;
+            head.next = head.prev = null ;
+        }
+    }
+    public Object get(int index) {
+        int counter=0;
+        doubly head = new doubly();
+        head = m ;
+        while(counter < index) {
+            head=head.next;
+            counter++;
+        }
+        return head.value;
+    }
+    public void set(int index, Object element) {
+        int counter=0;
+        doubly head = new doubly();
+        head = m ;
+        while(counter < index) {
+            head=head.next;
+            counter++;
+        }
+        head.value=element;
+    }
+    public boolean contains(Object o) {
+        doubly head  = new doubly();
+        head = m ;
+        while (head!= null){
+            if (head.value==o){
+                return true ;
+            }
+            head=head.next;
+        }
+        return false ;
+    }
+    doublylinkedlist sublist(int fromIndex, int toIndex) {
+        doubly head = new doubly();
+        head=m;
+        int counter = toIndex - fromIndex +1 ;
+        doublylinkedlist i = new doublylinkedlist() ;
+        while (fromIndex!=0){
+            fromIndex--;
+            head = head.next;
+        }
+        i.m.value=head.value;
+        i.m.prev=null;
+        doubly tail = new doubly();
+        tail.value=null;
+        tail.next=null;
+        i.m.next=tail;
+        head=head.next;
+        System.out.println(i.isEmpty());
+        while (counter>1){
+            i.add(head.value);
+            head=head.next;
+            counter--;
+        }
+        return i ;
+    }
+}
