@@ -9,7 +9,7 @@ public class LinkedList {
         return next;
     }
 }
-public class singlylinkedlist {
+public class singlylinkedlist implements ILinkedList  {
         LinkedList m = new LinkedList();
         public void add (Object element){
             LinkedList head = new LinkedList();
